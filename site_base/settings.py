@@ -53,7 +53,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'site_base.urls'
 
-TEMPLATE_DIR = 'C:/Documents/VEnv/PhotoView-backend/client/'
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'client')
 
 TEMPLATES = [
     {
@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'site_base.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'photoview_db',
+		'USER': 'admin',
+		'PASSWORD': '',
+		'HOST': 'localhost',
+		'PORT': '',
     }
 }
 
@@ -124,6 +128,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
     'client/static',
 ]
