@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Gridtype(Enum):
-	SW = 'Stonework'
-	TI = 'Tiles'
+    SW = 'Stonework'
+    TI = 'Tiles'
