@@ -7,7 +7,8 @@ import uuid
 # Create your models here.
 class Photo(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    url = models.CharField(max_length=500, null=True, validators=[URLValidator()])
+    url = models.CharField(max_length=500, null=False, validators=[URLValidator()])
+    description = models.CharField(max_length=500, null=True)
     created_date = models.DateTimeField(default=timezone.now)
 
 class Grid(models.Model):
