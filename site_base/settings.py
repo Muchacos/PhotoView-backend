@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import dj_database_url
+from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +29,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
     'photoset',
     'rest_framework',
 ]
@@ -50,7 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-	'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'site_base.urls'
@@ -75,7 +76,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'site_base.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -83,13 +83,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'photoview_db',
-		'USER': 'admin',
-		'PASSWORD': '',
-		'HOST': 'localhost',
-		'PORT': '',
+        'USER': 'admin',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -109,6 +108,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
+
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': timedelta(hours=1),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
