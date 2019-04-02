@@ -25,7 +25,7 @@ urlpatterns = [
     path('__admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/', include('accounts.urls')),
-    url(r'^auth/obtain_token/', obtain_jwt_token),
-    url(r'^auth/refresh_token/', refresh_jwt_token),
+    path('api/token/obtain/', obtain_jwt_token),
+    path('api/token/refresh/', refresh_jwt_token),
     url(r'^.*$', TemplateView.as_view(template_name="index.html")),
 ]
