@@ -21,7 +21,7 @@ sdist/
 var/
 wheels/
 *.egg-info/
-/migrations
+migrations/
 .installed.cfg
 *.egg
 MANIFEST
