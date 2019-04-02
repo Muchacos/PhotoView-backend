@@ -4,11 +4,13 @@ from django.core.validators import URLValidator, MaxValueValidator, MinValueVali
 from photoset.features.enums import Gridtype
 import uuid
 
+pic404_url = 'https://s.mxmcdn.net/images-storage/albums4/2/7/1/2/7/7/34772172_800_800.jpg'
+
 
 class Photo(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    url = models.CharField(max_length=500, null=False, validators=[URLValidator()])
-    description = models.CharField(max_length=500, null=True)
+    url = models.CharField(max_length=500, blank=False, null=False, default=pic404_url, validators=[URLValidator()])
+    description = models.CharField(max_length=500, blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
 
 
