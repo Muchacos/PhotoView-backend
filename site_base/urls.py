@@ -18,12 +18,13 @@ from django.urls import path, include
 from django.conf.urls import url
 from .routers import router
 from django.views.generic import TemplateView
-from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
 
 urlpatterns = [
     path('__admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/token/verify/', verify_jwt_token),
     path('api/token/obtain/', obtain_jwt_token),
     path('api/token/refresh/', refresh_jwt_token),
     url(r'^.*$', TemplateView.as_view(template_name="index.html")),
