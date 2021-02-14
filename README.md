@@ -1,2 +1,2 @@
 # PhotoView-backend
-[PhotoVue](photovue.herokuapp.com)
+[PhotoView](https://photovue.herokuapp.com/)
